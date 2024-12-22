@@ -1,46 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anniversary Countdown</title>
+    <title>شمارشگر سالگرد آشناییمون</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: #f9f9f9;
+            color: #333;
             margin: 0;
-            padding: 50px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff4d4d;
+            margin-bottom: 10px;
+        }
+        h1::before, h1::after {
+            content: "❤️";
+            margin: 0 10px;
         }
         #countdown {
+            font-size: 1.5rem;
+            background: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border: 2px solid #ff4d4d;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .time-unit {
+            display: inline-block;
+            margin: 0 10px;
+            text-align: center;
+        }
+        .time-unit span {
+            display: block;
             font-size: 2rem;
+            color: #ff4d4d;
+        }
+        .time-unit label {
+            font-size: 1rem;
+            color: #555;
+        }
+        footer {
             margin-top: 20px;
+            font-size: 0.9rem;
+            color: #aaa;
         }
     </style>
 </head>
 <body>
-    <h1>Our Anniversary Countdown</h1>
-    <p id="countdown"></p>
+    <h1>شمارشگر سالگرد آشناییمون</h1>
+    <div id="countdown">
+        <div class="time-unit">
+            <span id="months">0</span>
+            <label>ماه</label>
+        </div>
+        <div class="time-unit">
+            <span id="weeks">0</span>
+            <label>هفته</label>
+        </div>
+        <div class="time-unit">
+            <span id="days">0</span>
+            <label>روز</label>
+        </div>
+        <div class="time-unit">
+            <span id="hours">0</span>
+            <label>ساعت</label>
+        </div>
+        <div class="time-unit">
+            <span id="minutes">0</span>
+            <label>دقیقه</label>
+        </div>
+        <div class="time-unit">
+            <span id="seconds">0</span>
+            <label>ثانیه</label>
+        </div>
+    </div>
+    <footer>زمان باقیمونده تا 3 سالگیمون</footer>
 
     <script>
-        const anniversaryDate = new Date('2024-06-15T00:00:00'); // Change to your anniversary date
+        const anniversaryDate = new Date('2024-10-24T00:00:00'); // Change to your anniversary date
 
         function updateCountdown() {
             const now = new Date();
             const diff = anniversaryDate - now;
 
             if (diff <= 0) {
-                document.getElementById('countdown').textContent = "Happy Anniversary!";
+                document.getElementById('countdown').innerHTML = "🎉 زمان به پایان رسید! 🎉";
                 return;
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)); // Approximate month
+            const weeks = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('countdown').textContent = 
-                `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds remaining.`;
+            document.getElementById('months').textContent = months;
+            document.getElementById('weeks').textContent = weeks;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
         }
 
         setInterval(updateCountdown, 1000);
