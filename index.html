@@ -22,12 +22,12 @@
             content: "❤️";
             margin: 0 10px;
         }
-        h2 {
+        .title {
             font-size: 2rem;
             color: #333;
             margin: 20px 0;
         }
-        #countdown, #together-time {
+        .box {
             font-size: 1.5rem;
             background: #fff;
             padding: 20px;
@@ -37,6 +37,7 @@
             display: inline-block;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             max-width: 600px;
+            text-align: center;
         }
         .time-unit {
             display: inline-block;
@@ -52,18 +53,16 @@
             font-size: 1rem;
             color: #555;
         }
-        footer {
-            margin-top: 20px;
-            font-size: 1.5rem;
-            color: #333;
-            font-weight: bold;
+        .box:not(:last-child) {
+            margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
     <h1>شمارشگر سالگرد آشناییمون</h1>
-    <footer>زمان باقیمونده تا 3 سالگیمون</footer>
-    <div id="countdown">
+
+    <div class="title">زمان باقیمونده تا 3 سالگیمون</div>
+    <div class="box" id="countdown">
         <div class="time-unit">
             <span id="months">0</span>
             <label>ماه</label>
@@ -89,8 +88,9 @@
             <label>ثانیه</label>
         </div>
     </div>
-    <div id="together-time">
-        <h2>زمان با هم بودنمون</h2>
+
+    <div class="title">زمان با هم بودنمون</div>
+    <div class="box" id="together-time">
         <div class="time-unit">
             <span id="years-together">0</span>
             <label>سال</label>
