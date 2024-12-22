@@ -22,6 +22,11 @@
             content: "❤️";
             margin: 0 10px;
         }
+        h2 {
+            font-size: 2rem;
+            color: #333;
+            margin: 20px 0;
+        }
         #countdown, #together-time {
             font-size: 1.5rem;
             background: #fff;
@@ -49,13 +54,15 @@
         }
         footer {
             margin-top: 20px;
-            font-size: 0.9rem;
-            color: #aaa;
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <h1>شمارشگر سالگرد آشناییمون</h1>
+    <footer>زمان باقیمونده تا 3 سالگیمون</footer>
     <div id="countdown">
         <div class="time-unit">
             <span id="months">0</span>
@@ -113,10 +120,10 @@
             <label>ثانیه</label>
         </div>
     </div>
-    <footer>زمان باقیمونده تا 3 سالگیمون</footer>
 
     <script>
         const anniversaryDate = new Date('2025-10-24T00:00:00'); // Anniversary Date
+        const startDate = new Date('2022-10-24T00:00:00'); // Date since being together
 
         function updateCountdown() {
             const now = new Date();
@@ -124,7 +131,7 @@
 
             // Countdown to anniversary
             if (diff > 0) {
-                const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)); // Approximate month
+                const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
                 const weeks = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24 * 7));
                 const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -141,8 +148,8 @@
                 document.getElementById('countdown').innerHTML = "🎉 زمان به پایان رسید! 🎉";
             }
 
-            // Time together since anniversary
-            const togetherDiff = now - anniversaryDate;
+            // Time together since start date
+            const togetherDiff = now - startDate;
             if (togetherDiff > 0) {
                 const years = Math.floor(togetherDiff / (1000 * 60 * 60 * 24 * 365.25));
                 const months = Math.floor((togetherDiff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
