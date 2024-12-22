@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 50px;
+        }
+        #countdown {
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Our Anniversary Countdown</h1>
+    <p id="countdown"></p>
+
+    <script>
+        const anniversaryDate = new Date('2024-06-15T00:00:00'); // Change to your anniversary date
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = anniversaryDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').textContent = "Happy Anniversary!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').textContent = 
+                `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds remaining.`;
+        }
+
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
